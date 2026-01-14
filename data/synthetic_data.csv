@@ -1,0 +1,24 @@
+np.random.seed(42)
+m = 55
+
+# Features
+age = np.random.randint(1, 15, m)
+hours = np.random.randint(100, 300, m)
+vibration = np.random.uniform(0.5, 5.0, m)
+temperature = np.random.uniform(60, 90, m)
+
+# Target: maintenance cost with noise
+cost = 2000*age + 50*hours + 3000*vibration + 100*temperature + np.random.normal(0,500,m)
+
+# Combine into DataFrame
+df = pd.DataFrame({
+    'age': age,
+    'hours': hours,
+    'vibration': vibration,
+    'temperature': temperature,
+    'cost': cost
+})
+
+# Optional: Save CSV
+df.to_csv("data/synthetic_data.csv", index=False)
+df.head()
